@@ -4,7 +4,7 @@
     <List
             v-if="!visibleModal"
             :items='items'
-            @openModal="openModal"
+            @click="openModal"
     />
 
     <div v-else class="add-list__popup">
@@ -23,14 +23,14 @@
       />
 
       <div class="add-list__popup-colors">
-        <i>
           <Badge v-for="(color, i) in $store.getters.getColors"
                  :colors='$store.getters.getColors'
                  :colorId="i"
+                 :currentColor="currentColor"
                  :key="i"
                  :class="{'active' : false}"
+                @selectColor="selectColor(i)"
           />
-        </i>
       </div>
       <button class="button" @click="addTaskList">
         Добавить
@@ -42,12 +42,13 @@
 <script>
   import List from "../List/List";
   import Badge from "../Badge/Badge";
+  import { mapActions} from 'vuex';
 
   export default {
     name: "AddList",
 
     data: () => ({
-      colors: ['badge--green', 'badge--red', 'badge--blue'],
+
       items: [
         {
           className: 'list__add-button',
@@ -55,16 +56,25 @@
           name: 'Добавить список'
         }],
       visibleModal: false,
-      listValue: ''
+      listValue: '',
+      currentColor: 0,
+      isActive: false
     }),
 
     methods: {
+      ...mapActions(['addList', 'fetchLists']),
       openModal() {
         this.visibleModal = true
       },
+      selectColor(i) {
+        this.currentColor = i
+      },
 
-      addTaskList() {
-        console.log(this.listValue)
+      async addTaskList() {
+       await this.addList({
+          name: this.listValue,
+          colorId: this.currentColor
+        })
         this.listValue = ''
         this.visibleModal = false
       },

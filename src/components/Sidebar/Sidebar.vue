@@ -3,7 +3,7 @@
 
     <List :items="allTask"/>
 
-    <List :items="this.$store.getters.getLists" :colors="this.$store.getters.getColors" isRemovable="isRemovable"/>
+    <List :isActive="isActive" :items="getLists" :colors="getColors" isRemovable="isRemovable"/>
 
     <AddList/>
 
@@ -15,6 +15,7 @@
 <script>
   import List from '@/components/List/List'
   import AddList from "../AddList/AddList";
+  import {mapGetters} from 'vuex'
 
   export default {
     name: "Sidebar",
@@ -26,10 +27,13 @@
           icon: 'list.svg'
         }
       ],
-      lists: [],
-      colors: [],
       isRemovable: true,
+      isActive: false
     }),
+
+    computed: {
+      ...mapGetters(['getLists', 'getColors'])
+    },
 
     components: {
       AddList,

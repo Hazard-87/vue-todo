@@ -9,7 +9,7 @@
               type="text"
               placeholder="Текст задачи"
       />
-      <button class="button" @click="addTask">
+      <button class="button" @click="addNewTask">
         Добавить задачу
       </button>
       <button class="button button--grey" @click="hideTaskForm">
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex'
+
   export default {
     name: "AddTaskForm",
 
@@ -28,18 +30,23 @@
     }),
 
     methods: {
+      ...mapActions(['addTask', 'fetchLists']),
       hideTaskForm() {
         this.$emit('hideTaskForm')
       },
-      addTask() {
-        console.log(this.newTask)
+      async addNewTask() {
+        await this.addTask({
+          listId: 1,
+          text: this.newTask,
+          completed: false
+        })
+        this.fetchLists()
         this.hideTaskForm()
       }
     }
 
   }
 </script>
-
 
 
 <style scoped>

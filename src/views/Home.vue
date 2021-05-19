@@ -30,11 +30,10 @@
     mounted() {
       this.fetchLists()
       this.fetchColors()
-      this.fetchTasks()
     },
 
     methods: {
-      ...mapActions(['fetchLists', 'fetchColors', 'fetchTasks']),
+      ...mapActions(['fetchLists', 'fetchColors']),
       showTaskForm() {
         this.visibleTaskForm = true
       }

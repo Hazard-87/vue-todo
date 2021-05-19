@@ -1,7 +1,9 @@
 <template>
   <i
+          v-if="colors.length"
           class="badge"
-          :class="`badge--${colors[colorId].name}`"
+          :class="[colors[colorId] === colors[currentColor] ? `active badge--${colors[colorId].name}` : `badge--${colors[colorId].name}`]"
+          @click="selectColor"
   ></i>
 </template>
 
@@ -9,7 +11,13 @@
   export default {
     name: "Badge",
 
-    props: ['colors', 'colorId'],
+    props: ['colors', 'colorId', 'currentColor'],
+
+    methods: {
+      selectColor() {
+        this.$emit('selectColor')
+      }
+    }
 
   }
 </script>
