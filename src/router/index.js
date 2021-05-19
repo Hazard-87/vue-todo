@@ -1,13 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from "../views/Home";
+import AllTasks from "../views/AllTasks";
+import TaskItem from "../views/TaskItem";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    component: Home
+    name: 'alltasks',
+    component: AllTasks
+  },
+  {
+    path: '/:id',
+    component: TaskItem
   },
 
 ]

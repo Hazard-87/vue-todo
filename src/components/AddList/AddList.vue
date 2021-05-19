@@ -1,11 +1,17 @@
 <template>
   <div class="add-list">
+    <ul class="list" v-if="!visibleModal">
 
-    <List
-            v-if="!visibleModal"
-            :items='items'
-            @click="openModal"
-    />
+      <li :class="[item.className]" @click="openModal">
+        <i>
+          <img src="../../assets/img/add.svg"/>
+        </i>
+        <span>
+        {{item.name}}
+      </span>
+      </li>
+
+    </ul>
 
     <div v-else class="add-list__popup">
       <img
@@ -23,14 +29,14 @@
       />
 
       <div class="add-list__popup-colors">
-          <Badge v-for="(color, i) in $store.getters.getColors"
-                 :colors='$store.getters.getColors'
-                 :colorId="i"
-                 :currentColor="currentColor"
-                 :key="i"
-                 :class="{'active' : false}"
-                @selectColor="selectColor(i)"
-          />
+        <Badge v-for="(color, i) in $store.getters.getColors"
+               :colors='$store.getters.getColors'
+               :colorId="i"
+               :currentColor="currentColor"
+               :key="i"
+               :class="{'active' : false}"
+               @selectColor="selectColor(i)"
+        />
       </div>
       <button class="button" @click="addTaskList">
         Добавить
@@ -42,19 +48,19 @@
 <script>
   import List from "../List/List";
   import Badge from "../Badge/Badge";
-  import { mapActions} from 'vuex';
+  import {mapActions} from 'vuex';
 
   export default {
     name: "AddList",
 
     data: () => ({
 
-      items: [
-        {
-          className: 'list__add-button',
-          icon: 'add.svg',
-          name: 'Добавить список'
-        }],
+      item:
+          {
+            className: 'list__add-button',
+            icon: 'add.svg',
+            name: 'Добавить список'
+          },
       visibleModal: false,
       listValue: '',
       currentColor: 0,
@@ -71,7 +77,7 @@
       },
 
       async addTaskList() {
-       await this.addList({
+        await this.addList({
           name: this.listValue,
           colorId: this.currentColor
         })

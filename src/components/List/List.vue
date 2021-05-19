@@ -1,7 +1,6 @@
 <template>
-  <ul class="list">
-    <li v-for="(item, i) in items" :class="[activeId === i ? `active ${item.className}` : item.className]" :key="item.id"
-        @click="clickItem(i)">
+
+    <router-link :to="url" tag="li" :class="[item && item.className]" @click="$emit('click-list')">
       <i>
         <img v-if="item.icon" :src="getImgUrl(item.icon)"/>
         <Badge v-else :colorId="item.colorId" :colors="colors"/>
@@ -14,8 +13,8 @@
               v-if="isRemovable"
               class="list__remove-icon"
               src='../../assets/img/remove.svg'/>
-    </li>
-  </ul>
+    </router-link>
+
 </template>
 
 <script>
@@ -26,10 +25,11 @@
     name: "List",
 
     data: () => ({
-      activeId: null
+      activeId: null,
+      url: ''
     }),
 
-    props: ['isRemovable', 'items', 'colors', 'isActive'],
+    props: ['isRemovable', 'item', 'colors', 'isActive'],
 
     components: {
       Badge
@@ -39,15 +39,23 @@
       getImgUrl(pic) {
         return require('../../assets/img/' + pic)
       },
-      clickItem(i) {
-        this.$emit('click')
-        this.activeId = i
+      setUrl() {
+        if(this.item.id) {
+          this.url = '/' + this.item.id
+        } else {
+          this.url = '/'
+        }
       },
       async deleteList(id) {
         await this.removeList(id)
         this.fetchLists()
       }
-    }
+    },
+      mounted() {
+        this.setUrl()
+      },
+
+
   }
 </script>
 

@@ -1,6 +1,5 @@
 <template>
   <div class="tasks">
-    <template v-for="list in getLists">
       <h2 class="tasks__title" :style="[list.color && {color: list.color.hex}]">
         {{list.name}}
         <img src="../../assets/img/edit.svg" alt="">
@@ -67,20 +66,16 @@
 <!--        <div class="tasks__items-row">Задач нет</div>-->
 
       </div>
-    </template>
   </div>
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'vuex'
+  import { mapActions} from 'vuex'
 
   export default {
     name: "Task",
 
-
-    computed: {
-      ...mapGetters(['getLists']),
-    },
+    props: ['list'],
 
     methods: {
       ...mapActions(['removeTask', 'fetchLists']),

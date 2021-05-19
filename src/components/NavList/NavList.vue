@@ -1,11 +1,19 @@
 <template>
   <div class="todo__sidebar">
+    <ul class="list">
+      <List v-for="item in allTask" :item="item"/>
+    </ul>
 
-    <List :items="allTask"/>
+    <ul class="list">
+      <List v-for="item in getLists"
+            :isActive="isActive"
+            :item="item"
+            :colors="getColors"
+            @click=""
+            isRemovable="isRemovable"/>
+    </ul>
 
-    <List :isActive="isActive" :items="getLists" :colors="getColors" isRemovable="isRemovable"/>
-
-    <AddList/>
+      <AddList/>
 
   </div>
 
@@ -18,15 +26,17 @@
   import {mapGetters} from 'vuex'
 
   export default {
-    name: "Sidebar",
+    name: "NavList",
 
     data: () => ({
+      itemAddList: [1],
       allTask: [
         {
           name: 'Все задачи',
           icon: 'list.svg'
         }
       ],
+      activeItemId: null,
       isRemovable: true,
       isActive: false
     }),
