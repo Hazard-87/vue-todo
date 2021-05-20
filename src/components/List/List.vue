@@ -1,6 +1,6 @@
 <template>
-
-    <router-link :to="url" tag="li" :class="[item && item.className]" @click="$emit('click-list')">
+  <li @click="$emit('click-list')">
+    <router-link tag="div" class="list-link" :class="[item && item.className]" :to="url">
       <i>
         <img v-if="item.icon" :src="getImgUrl(item.icon)"/>
         <Badge v-else :color="colors[item.colorId-1]" :colors="colors"/>
@@ -8,12 +8,13 @@
       <span>
         {{item.name}}
       </span>
-      <img
-              @click="removeList(item.id)"
-              v-if="isRemovable"
-              class="list__remove-icon"
-              src='../../assets/img/remove.svg'/>
     </router-link>
+    <img
+            @click="deleteList(item.id)"
+            v-if="isRemovable"
+            class="list__remove-icon"
+            src='../../assets/img/remove.svg'/>
+  </li>
 
 </template>
 
@@ -40,25 +41,36 @@
         return require('../../assets/img/' + pic)
       },
       setUrl() {
-        if(this.item.id) {
+        if (this.item.id) {
           this.url = '/' + this.item.id
         } else {
           this.url = '/'
         }
       },
-      // async deleteList(id) {
-      //   await this.removeList(id)
-      //   // this.fetchLists()
-      // }
+      async deleteList(id) {
+        await this.removeList(id)
+        this.$router.push('/')
+      }
     },
-      mounted() {
-        this.setUrl()
-      },
+    mounted() {
+      this.setUrl()
+      // this.$router.push('/')
+    },
 
 
   }
 </script>
 
 <style scoped>
-
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+  .list-link{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+  }
 </style>

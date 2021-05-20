@@ -1,7 +1,6 @@
 <template>
   <div class="add-list">
     <ul class="list" v-if="!visibleModal">
-
       <li :class="[item.className]" @click="openModal">
         <i>
           <img src="../../assets/img/add.svg"/>
@@ -10,7 +9,6 @@
         {{item.name}}
       </span>
       </li>
-
     </ul>
 
     <div v-else class="add-list__popup">
@@ -36,7 +34,7 @@
                :currentColor="currentColor"
                :key="i"
                :class="{'active' : false}"
-               @selectColor="selectColor(i)"
+               @selectColor="selectColor(color.id)"
         />
       </div>
       <button class="button" @click="addTaskList">
@@ -64,7 +62,7 @@
           },
       visibleModal: false,
       listValue: '',
-      currentColor: 0,
+      currentColor: 1,
       isActive: false,
     }),
 
@@ -73,12 +71,11 @@
       openModal() {
         this.visibleModal = true
       },
-      selectColor(i) {
-        this.currentColor = i+1
+      selectColor(id) {
+        this.currentColor = id
       },
 
       async addTaskList() {
-        console.log(this.currentColor)
         await this.addList({
           name: this.listValue,
           colorId: this.currentColor
@@ -96,4 +93,7 @@
 
 <style lang="scss">
   @import '../AddList/AddList.scss';
+  li {
+    padding: 10px 12px;
+  }
 </style>

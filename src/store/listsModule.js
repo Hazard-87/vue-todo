@@ -5,7 +5,8 @@ export default {
     lists: [],
     colors: [],
     tasks: [],
-    currentListId: null
+    currentListId: null,
+    currentColor: 1,
   },
   mutations: {
     setLists(state, payload) {

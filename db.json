@@ -25,11 +25,6 @@
       "name": "Спорт",
       "colorId": 3,
       "id": 6
-    },
-    {
-      "name": "testlist",
-      "colorId": 3,
-      "id": 7
     }
   ],
   "tasks": [
@@ -60,32 +55,20 @@
     {
       "listId": 1,
       "text": "Пофиксить роут-линки",
-      "completed": false,
+      "completed": true,
       "id": 14
-    },
-    {
-      "listId": 7,
-      "text": "task1",
-      "completed": true,
-      "id": 16
-    },
-    {
-      "listId": 7,
-      "text": "task2",
-      "completed": false,
-      "id": 17
-    },
-    {
-      "listId": 7,
-      "text": "task3",
-      "completed": true,
-      "id": 18
     },
     {
       "listId": 1,
       "text": "Реализовать класс активности активного списка",
       "completed": false,
       "id": 19
+    },
+    {
+      "listId": 6,
+      "text": "Заняться бегом",
+      "completed": true,
+      "id": 20
     }
   ],
   "colors": [
