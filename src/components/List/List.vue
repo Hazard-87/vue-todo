@@ -3,13 +3,13 @@
     <router-link :to="url" tag="li" :class="[item && item.className]" @click="$emit('click-list')">
       <i>
         <img v-if="item.icon" :src="getImgUrl(item.icon)"/>
-        <Badge v-else :colorId="item.colorId" :colors="colors"/>
+        <Badge v-else :color="colors[item.colorId-1]" :colors="colors"/>
       </i>
       <span>
         {{item.name}}
       </span>
       <img
-              @click="deleteList(item.id)"
+              @click="removeList(item.id)"
               v-if="isRemovable"
               class="list__remove-icon"
               src='../../assets/img/remove.svg'/>
@@ -46,10 +46,10 @@
           this.url = '/'
         }
       },
-      async deleteList(id) {
-        await this.removeList(id)
-        this.fetchLists()
-      }
+      // async deleteList(id) {
+      //   await this.removeList(id)
+      //   // this.fetchLists()
+      // }
     },
       mounted() {
         this.setUrl()

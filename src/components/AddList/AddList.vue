@@ -31,7 +31,8 @@
       <div class="add-list__popup-colors">
         <Badge v-for="(color, i) in $store.getters.getColors"
                :colors='$store.getters.getColors'
-               :colorId="i"
+               :colorId="color.id"
+               :color="color"
                :currentColor="currentColor"
                :key="i"
                :class="{'active' : false}"
@@ -64,7 +65,7 @@
       visibleModal: false,
       listValue: '',
       currentColor: 0,
-      isActive: false
+      isActive: false,
     }),
 
     methods: {
@@ -73,10 +74,11 @@
         this.visibleModal = true
       },
       selectColor(i) {
-        this.currentColor = i
+        this.currentColor = i+1
       },
 
       async addTaskList() {
+        console.log(this.currentColor)
         await this.addList({
           name: this.listValue,
           colorId: this.currentColor

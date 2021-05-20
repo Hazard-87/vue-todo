@@ -2,7 +2,7 @@
   <i
           v-if="colors.length"
           class="badge"
-          :class="[colors[colorId] === colors[currentColor] ? `active badge--${colors[colorId].name}` : `badge--${colors[colorId].name}`]"
+          :class="[color.id === currentColor ? `active badge--${color.name}` : `badge--${color.name}`]"
           @click="selectColor"
   ></i>
 </template>
@@ -11,7 +11,7 @@
   export default {
     name: "Badge",
 
-    props: ['colors', 'colorId', 'currentColor'],
+    props: ['colors', 'colorId', 'currentColor', 'color'],
 
     methods: {
       selectColor() {

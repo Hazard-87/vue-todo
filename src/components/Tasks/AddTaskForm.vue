@@ -20,30 +20,38 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex'
+  import {mapActions, mapMutations, mapGetters} from 'vuex'
 
   export default {
     name: "AddTaskForm",
 
-    data: () => ({
-      newTask: ''
-    }),
+    data() {
+      return {
+        newTask: '',
+        id: +this.$route.params['id']
+      }
+    },
 
     methods: {
-      ...mapActions(['addTask', 'fetchLists']),
+      ...mapActions(['addTask', 'fetchTasks']),
+      ...mapMutations(['setCurrentListId']),
       hideTaskForm() {
         this.$emit('hideTaskForm')
       },
       async addNewTask() {
         await this.addTask({
-          listId: 1,
+          listId: this.id,
           text: this.newTask,
           completed: false
         })
-        this.fetchLists()
+        this.fetchTasks(this.id)
         this.hideTaskForm()
       }
-    }
+    },
+
+    computed: {
+      ...mapGetters(['getCurrentListId'])
+    },
 
   }
 </script>
