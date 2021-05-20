@@ -7,8 +7,9 @@
 
     <div class="tasks__items">
       <div class="tasks__items-row" v-for="task in list.tasks" v-if="list.id === task.listId">
-        <div class="checkbox">
+        <div class="checkbox" @click="changeCompleted(task.id, task.completed)">
           <input
+
                   type="checkbox"
                   :checked='task.completed'
           />
@@ -85,6 +86,9 @@
        this.fetchTasks(id)
         // this.fetchTasks(id)
         // await this.fetchLists()
+      },
+      changeCompleted(id, isCompleted) {
+        this.$emit('changeCompleted', id, isCompleted)
       }
     }
 

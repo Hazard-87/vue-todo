@@ -26,6 +26,13 @@ export default {
     setCurrentListId(state, payload) {
       state.currentListId = payload
     },
+    editIsCompleted(state, payload) {
+      state.tasks[0].tasks.map(task => {
+        if (task.id === payload.id) {
+          task.completed = !payload.isCompleted
+        }
+      })
+    }
   },
   getters: {
     getLists(state) {
@@ -71,12 +78,17 @@ export default {
     },
     async removeTask(context, id) {
       const res = await axios.delete('http://localhost:3000/tasks/' + id)
-
+      if(res.status===200) {
         const newTasks = await context.state.tasks[0].tasks.filter(task => task.id !== id);
-        console.log(newTasks)
         context.commit('setNewTasks', newTasks)
-
+      }
     },
+    async changeIsCompleted(context, payload) {
+      const res = await axios.patch('http://localhost:3000/tasks/' + payload.id, {
+        completed: !payload.isCompleted
+      })
+      context.commit('editIsCompleted', payload)
+    }
 
   }
 }

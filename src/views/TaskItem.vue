@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Task v-for="list in getTasks" :list="list" :key="list.id"/>
+    <Task @changeCompleted="changeCompleted" v-for="list in getTasks" :list="list" :key="list.id"/>
     <AddTaskButton v-if="!visibleTaskForm" @showTaskForm="showTaskForm"/>
     <AddTaskForm v-else @hideTaskForm="visibleTaskForm = false"/>
   </div>
@@ -23,9 +23,13 @@
     },
 
     methods: {
-      ...mapActions(['fetchTasks']),
+      ...mapActions(['fetchTasks', 'changeIsCompleted']),
       showTaskForm() {
         this.visibleTaskForm = true
+      },
+      changeCompleted(id, isCompleted) {
+        const payload = {id, isCompleted}
+        this.changeIsCompleted(payload)
       }
     },
 

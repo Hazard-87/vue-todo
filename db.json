@@ -3,7 +3,8 @@
     {
       "id": 1,
       "name": "Приложение",
-      "colorId": 5
+      "colorId": 5,
+      "completed": true
     },
     {
       "id": 3,
@@ -24,19 +25,24 @@
       "name": "Спорт",
       "colorId": 3,
       "id": 6
+    },
+    {
+      "name": "testlist",
+      "colorId": 3,
+      "id": 7
     }
   ],
   "tasks": [
     {
       "listId": 4,
       "text": "Купить 1984!",
-      "completed": true,
+      "completed": false,
       "id": 10
     },
     {
       "listId": 1,
       "text": "Реализовать отметку выполненных задач",
-      "completed": false,
+      "completed": true,
       "id": 11
     },
     {
@@ -56,6 +62,30 @@
       "text": "Пофиксить роут-линки",
       "completed": false,
       "id": 14
+    },
+    {
+      "listId": 7,
+      "text": "task1",
+      "completed": true,
+      "id": 16
+    },
+    {
+      "listId": 7,
+      "text": "task2",
+      "completed": false,
+      "id": 17
+    },
+    {
+      "listId": 7,
+      "text": "task3",
+      "completed": true,
+      "id": 18
+    },
+    {
+      "listId": 1,
+      "text": "Реализовать класс активности активного списка",
+      "completed": false,
+      "id": 19
     }
   ],
   "colors": [
