@@ -26,10 +26,6 @@
     computed: {
       ...mapGetters(['getLists']),
     },
-    //
-    // mounted() {
-    //   this.fetchLists()
-    // },
 
     components: {
       Task

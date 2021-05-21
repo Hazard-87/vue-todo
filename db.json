@@ -12,31 +12,20 @@
       "colorId": 3
     },
     {
-      "id": 4,
-      "name": "Книги",
-      "colorId": 2
+      "name": "Vue.js",
+      "colorId": 2,
+      "id": 7
     },
     {
-      "id": 5,
-      "name": "Личное",
-      "colorId": 1
-    },
-    {
-      "name": "Спортс",
-      "colorId": 3,
-      "id": 6
+      "name": "еуые",
+      "colorId": 1,
+      "id": 8
     }
   ],
   "tasks": [
     {
-      "listId": 4,
-      "text": "Купить что то!",
-      "completed": true,
-      "id": 10
-    },
-    {
       "listId": 1,
-      "text": "Реализов отметку выполненных зада",
+      "text": "Реализовал отметку выполненных задач",
       "completed": true,
       "id": 11
     },
@@ -48,63 +37,75 @@
     },
     {
       "listId": 1,
-      "text": "Пофиксил роут-линкиs",
+      "text": "Пофиксил роут-линки",
       "completed": true,
       "id": 14
     },
     {
       "listId": 1,
-      "text": "Реализовать класс активности активного списк",
+      "text": "Реализовать класс активности активного списка",
       "completed": false,
       "id": 19
     },
     {
-      "listId": 6,
-      "text": "Заняться бегом",
-      "completed": true,
-      "id": 20
-    },
-    {
       "listId": 1,
       "text": "Если нет задач в списке, выводить надпись \"Задачи отсутствуют\"",
-      "completed": false,
+      "completed": true,
       "id": 21
     },
     {
       "listId": 3,
-      "text": "dddww",
-      "completed": true,
+      "text": "Посмотреть Форсаж 9",
+      "completed": false,
       "id": 25
     },
     {
-      "listId": 5,
-      "text": "mdl;kkkk",
-      "completed": false,
-      "id": 26
-    },
-    {
-      "listId": 6,
-      "text": "1111кататься на велосипед",
-      "completed": false,
-      "id": 29
-    },
-    {
       "listId": 3,
-      "text": "wqq",
-      "completed": true,
+      "text": "Досмотреть сериал \"Настоящий детектив\"",
+      "completed": false,
       "id": 38
-    },
-    {
-      "listId": 5,
-      "text": "вввв",
-      "completed": true,
-      "id": 39
     },
     {
       "listId": 1,
       "text": "Реализовать редактирование заголовка задач",
-      "completed": false,
+      "completed": true,
       "id": 40
+    },
+    {
+      "listId": 7,
+      "text": "Прочитать документацию!!",
+      "completed": true,
+      "id": 42
+    },
+    {
+      "listId": 7,
+      "text": "Изучить Nuxt.js",
+      "completed": true,
+      "id": 43
+    },
+    {
+      "listId": 7,
+      "text": "Научиться применять TypeScript во Vue.js",
+      "completed": false,
+      "id": 44
+    },
+    {
+      "listId": 3,
+      "text": "Посмотрел Джентльмены",
+      "completed": true,
+      "id": 46
+    },
+    {
+      "listId": 1,
+      "text": "Реализовать обработку ошибок",
+      "completed": false,
+      "id": 47
+    },
+    {
+      "listId": 1,
+      "text": "Реализовать валидацию на пустой текст",
+      "completed": false,
+      "id": 48
     }
   ],
   "colors": [
