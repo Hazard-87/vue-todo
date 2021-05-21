@@ -27,7 +27,7 @@
 
     data: () => ({
       activeId: null,
-      url: ''
+      url: '',
     }),
 
     props: ['isRemovable', 'item', 'colors', 'isActive'],
@@ -52,6 +52,8 @@
         this.$router.push('/')
       }
     },
+
+
     mounted() {
       this.setUrl()
       // this.$router.push('/')

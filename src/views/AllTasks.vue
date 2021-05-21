@@ -1,18 +1,26 @@
 <template>
   <div>
-    <Task v-for="list in getLists" :list="list" :key="list.id"/>
+    <Task @changeCompleted="changeCompleted" v-for="(list, i) in getLists" :currentId="i" :list="list" :key="list.id" @click-task="clickTask(i)"/>
   </div>
 </template>
 
 <script>
-  import {mapActions, mapGetters} from 'vuex'
+  import {mapActions, mapGetters, mapMutations} from 'vuex'
   import Task from '@/components/Tasks/Task'
 
   export default {
     name: "AllTasks",
 
     methods: {
-      ...mapActions(['fetchLists'])
+      ...mapActions(['fetchLists', 'changeIsCompleted']),
+      ...mapMutations(['setCurrentList']),
+      changeCompleted(id, isCompleted) {
+        const data = {id, isCompleted}
+        this.changeIsCompleted(data)
+      },
+      clickTask(i) {
+        this.setCurrentList(i)
+      }
     },
 
     computed: {

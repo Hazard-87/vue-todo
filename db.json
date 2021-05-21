@@ -22,39 +22,38 @@
       "colorId": 1
     },
     {
-      "name": "Спорт",
+      "name": "Спортс",
       "colorId": 3,
       "id": 6
+    },
+    {
+      "name": "еуе",
+      "colorId": 3,
+      "id": 7
     }
   ],
   "tasks": [
     {
       "listId": 4,
-      "text": "Купить 1984!",
-      "completed": false,
+      "text": "Купить что то!",
+      "completed": true,
       "id": 10
     },
     {
       "listId": 1,
-      "text": "Реализовать отметку выполненных задач",
+      "text": "Реализов отметку выполненных зада",
       "completed": true,
       "id": 11
     },
     {
       "listId": 1,
-      "text": "Реализовать редактирование заголовка и списка задач",
-      "completed": false,
+      "text": "Реализовал редактирование  списка задач",
+      "completed": true,
       "id": 12
     },
     {
       "listId": 1,
-      "text": "Реализовать лоадер при загрузке и отправке данных",
-      "completed": false,
-      "id": 13
-    },
-    {
-      "listId": 1,
-      "text": "Пофиксить роут-линки",
+      "text": "Пофиксил роут-линкиs",
       "completed": true,
       "id": 14
     },
@@ -69,6 +68,48 @@
       "text": "Заняться бегом",
       "completed": true,
       "id": 20
+    },
+    {
+      "listId": 1,
+      "text": "Если нет задач в списке, выводить надпись \"Задачи отсутствуют\"",
+      "completed": false,
+      "id": 21
+    },
+    {
+      "listId": 3,
+      "text": "dddww",
+      "completed": true,
+      "id": 25
+    },
+    {
+      "listId": 5,
+      "text": "mdl;kkkk",
+      "completed": false,
+      "id": 26
+    },
+    {
+      "listId": 6,
+      "text": "кататься на велосипед",
+      "completed": false,
+      "id": 29
+    },
+    {
+      "listId": 3,
+      "text": "wqq",
+      "completed": true,
+      "id": 38
+    },
+    {
+      "listId": 5,
+      "text": "вввв",
+      "completed": true,
+      "id": 39
+    },
+    {
+      "listId": 1,
+      "text": "Реализовать редактирование заголовка задач",
+      "completed": false,
+      "id": 40
     }
   ],
   "colors": [

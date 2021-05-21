@@ -5,11 +5,11 @@
     </ul>
 
     <ul class="list">
-      <List v-for="item in getLists"
+      <List v-for="(item, i) in getLists"
             :isActive="isActive"
             :item="item"
+            @click-list="clickList(i)"
             :colors="getColors"
-            @click=""
             isRemovable="isRemovable"/>
     </ul>
 
@@ -23,7 +23,7 @@
 <script>
   import List from '@/components/List/List'
   import AddList from "../AddList/AddList";
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapMutations} from 'vuex'
 
   export default {
     name: "NavList",
@@ -41,8 +41,15 @@
       isActive: false
     }),
 
+    methods: {
+      ...mapMutations(['setCurrentList']),
+      clickList(id) {
+        this.setCurrentList(id)
+      }
+    },
+
     computed: {
-      ...mapGetters(['getLists', 'getColors'])
+      ...mapGetters(['getLists', 'getColors',])
     },
 
     components: {

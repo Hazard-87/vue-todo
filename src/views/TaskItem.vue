@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Task @changeCompleted="changeCompleted" v-for="list in getTasks" :list="list" :key="list.id"/>
+    <Task @changeCompleted="changeCompleted" :list="getLists[getCurrentList]" />
     <AddTaskButton v-if="!visibleTaskForm" @showTaskForm="showTaskForm"/>
     <AddTaskForm v-else @hideTaskForm="visibleTaskForm = false"/>
   </div>
@@ -23,7 +23,7 @@
     },
 
     methods: {
-      ...mapActions(['fetchTasks', 'changeIsCompleted']),
+      ...mapActions(['fetchLists', 'changeIsCompleted']),
       showTaskForm() {
         this.visibleTaskForm = true
       },
@@ -34,17 +34,14 @@
     },
 
     computed: {
-      ...mapGetters(['getTasks'])
-    },
+      ...mapGetters(['getTasks', 'getLists', 'getCurrentList']),
 
-    mounted() {
-      this.fetchTasks(this.id)
     },
 
     watch: {
       $route(toRoute) {
         this.id = toRoute.params['id']
-        this.fetchTasks(this.id)
+        // this.fetchTasks(this.id)
       }
     },
 
