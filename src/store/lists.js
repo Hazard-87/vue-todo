@@ -3,11 +3,8 @@ import axios from "axios";
 export default {
   state: {
     lists: [],
-    colors: [],
-    tasks: [],
     currentListId: null,
-    currentColor: 1,
-    currentList: 2,
+    currentList: 0,
   },
   mutations: {
     setLists(state, payload) {
@@ -19,23 +16,11 @@ export default {
     addTasks(state, payload) {
       state.lists[state.currentList].tasks.push(payload)
     },
-    setColors(state, payload) {
-      state.colors = payload
-    },
-    setTasks(state, payload) {
-      state.tasks = [payload]
-    },
     setNewTasks(state, newTasks) {
       state.lists[state.currentList].tasks = newTasks
     },
-    setCurrentListId(state, payload) {
-      state.currentListId = payload
-    },
-    setCurrentList(state, payload) {
-      state.currentList = payload
-    },
     editIsCompleted(state, payload) {
-      state.lists[state.currentList ].tasks.map(task => {
+      state.lists[state.currentList].tasks.map(task => {
         if (task.id === payload.id) {
           task.completed = payload.completed
         }
@@ -55,25 +40,23 @@ export default {
         }
       })
     },
-  }
-  ,
+
+    setCurrentListId(state, payload) {
+      state.currentListId = payload
+    },
+    setCurrentList(state, payload) {
+      state.currentList = payload
+    },
+  },
+
   getters: {
     getLists(state) {
       return state.lists
-    }
-    ,
-    getTasks(state) {
-      return state.tasks
-    }
-    ,
-    getColors(state) {
-      return state.colors
-    }
-    ,
+    },
+
     getCurrentListId(state) {
       return state.currentListId
-    }
-    ,
+    },
     getCurrentList(state) {
       return state.currentList
     },
@@ -83,29 +66,17 @@ export default {
     async fetchLists(context) {
       let res = await axios.get('http://localhost:3000/lists?_expand=color&_embed=tasks');
       context.commit("setLists", res.data);
-    }
-    ,
-    async fetchTasks(context, id) {
-      let res = await axios.get(`http://localhost:3000/lists/${id}?_expand=color&_embed=tasks`);
-      context.commit("setTasks", res.data);
-    }
-    ,
-    async fetchColors(context) {
-      let res = await axios.get('http://localhost:3000/colors');
-      context.commit("setColors", res.data);
-    }
-    ,
+    },
+
     async addList(context, payload) {
       let res = await axios.post('http://localhost:3000/lists', payload);
       res.data = {...res.data, tasks: []}
       context.commit("addLists", res.data);
-    }
-    ,
+    },
     async addTask(context, payload) {
       const res = await axios.post('http://localhost:3000/tasks', payload);
       context.commit("addTasks", res.data);
-    }
-    ,
+    },
     async removeList(context, id) {
       const res = await axios.delete('http://localhost:3000/lists/' + id);
       if (res.status === 200) {
@@ -123,22 +94,18 @@ export default {
         completed: !payload.isCompleted
       })
       context.commit('editIsCompleted', res.data)
-    }
-    ,
+    },
     async changeTitle(context, payload) {
       const res = await axios.patch('http://localhost:3000/lists/' + payload.id, {
         name: payload.name
       })
       context.commit('editTitle', res.data)
-    }
-    ,
+    },
     async changeTaskText(context, payload) {
       const res = await axios.patch('http://localhost:3000/tasks/' + payload.id, {
         text: payload.text
       })
       context.commit('editText', res.data)
-    }
-    ,
-
+    },
   }
 }

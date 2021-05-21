@@ -53,7 +53,6 @@
     name: "AddList",
 
     data: () => ({
-
       item:
           {
             className: 'list__add-button',
@@ -67,7 +66,8 @@
     }),
 
     methods: {
-      ...mapActions(['addList', 'fetchLists']),
+      // ...mapActions(['addList', 'fetchLists']),
+      ...mapActions(['addList']),
       openModal() {
         this.visibleModal = true
       },

@@ -1,19 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AllTasks from "../views/AllTasks";
-import TaskItem from "../views/TaskItem";
+import AllLists from "../views/AllLists";
+import Tasks from "../views/Tasks";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'alltasks',
-    component: AllTasks
+    name: 'all-lists',
+    component: AllLists
   },
   {
     path: '/:id',
-    component: TaskItem
+    component: Tasks
   },
 
 ]

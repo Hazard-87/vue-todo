@@ -1,26 +1,28 @@
 <template>
   <div id="app">
     <div class="todo">
-      <NavList/>
+      <Sidebar/>
       <TaskList/>
     </div>
   </div>
 </template>
 
 <script>
-  import NavList from "@/components/NavList/NavList";
+  import Sidebar from "@/components/Sidebar/Sidebar";
   import {mapActions} from "vuex";
-  import TaskList from "./views/TaskList";
+  import TaskList from "./views/Content";
 
   export default {
     components: {
       TaskList,
-      NavList
+      Sidebar
     },
+
     mounted() {
       this.fetchLists()
       this.fetchColors()
     },
+
     methods: {
       ...mapActions(['fetchLists', 'fetchColors']),
     }

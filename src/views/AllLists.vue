@@ -26,10 +26,10 @@
     computed: {
       ...mapGetters(['getLists']),
     },
-
-    mounted() {
-      this.fetchLists()
-    },
+    //
+    // mounted() {
+    //   this.fetchLists()
+    // },
 
     components: {
       Task

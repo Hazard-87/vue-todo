@@ -8,7 +8,7 @@
 
     <div class="tasks__items">
 
-      <TaskRow :list="list" @changeCompleted="changeCompleted" :currentId="currentId" @click-task="$emit('click-task')"/>
+      <TaskItem :list="list" @changeCompleted="changeCompleted" :currentId="currentId" @click-task="$emit('click-task')"/>
 
       <!--        <div class="tasks__items-row">Задач нет</div>-->
 
@@ -18,11 +18,12 @@
 
 <script>
   import {mapActions, mapMutations} from 'vuex'
-  import TaskRow from "./TaskRow";
+  import TaskItem from "./TaskItem";
 
   export default {
     name: "Task",
-    components: {TaskRow},
+    components: {TaskItem},
+
     data() {
       if (this.list) {
         return {
@@ -50,12 +51,7 @@
         }
         this.changeTitle(data)
       }
-    },
-
-    mounted() {
-
     }
-
   }
 </script>
 

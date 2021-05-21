@@ -7,12 +7,8 @@
 </template>
 
 <script>
-  import Task from "@/components/Tasks/Task";
-  import AddTaskForm from "@/components/Tasks/AddTaskForm";
-  import AddTaskButton from "../components/Tasks/AddTaskButton";
-
   export default {
-    name: "TaskList",
+    name: "Content",
 
   }
 </script>

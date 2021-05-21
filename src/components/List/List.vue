@@ -35,8 +35,10 @@
     components: {
       Badge
     },
+
     methods: {
-      ...mapActions(['removeList', 'fetchLists']),
+      // ...mapActions(['removeList', 'fetchLists']),
+      ...mapActions(['removeList']),
       getImgUrl(pic) {
         return require('../../assets/img/' + pic)
       },
@@ -53,13 +55,10 @@
       }
     },
 
-
     mounted() {
       this.setUrl()
       // this.$router.push('/')
     },
-
-
   }
 </script>
 

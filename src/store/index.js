@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import listsModule from '@/store/listsModule'
+import lists from '@/store/lists'
+import colors from '@/store/colors'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 
   modules: {
-    listsModule
+    lists, colors
   }
 })

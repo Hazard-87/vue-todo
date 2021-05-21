@@ -33,7 +33,7 @@
     },
 
     methods: {
-      ...mapActions(['addTask', 'fetchTasks']),
+      ...mapActions(['addTask']),
       ...mapMutations(['setCurrentListId']),
       hideTaskForm() {
         this.$emit('hideTaskForm')
@@ -44,7 +44,7 @@
           text: this.newTask,
           completed: false
         })
-        this.fetchTasks(this.id)
+        // this.fetchTasks(this.id)
         this.hideTaskForm()
       }
     },

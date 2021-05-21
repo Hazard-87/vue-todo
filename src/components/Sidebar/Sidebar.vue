@@ -26,7 +26,7 @@
   import {mapGetters, mapMutations} from 'vuex'
 
   export default {
-    name: "NavList",
+    name: "Sidebar",
 
     data: () => ({
       itemAddList: [1],
@@ -49,7 +49,7 @@
     },
 
     computed: {
-      ...mapGetters(['getLists', 'getColors',])
+      ...mapGetters(['getLists', 'getColors'])
     },
 
     components: {
