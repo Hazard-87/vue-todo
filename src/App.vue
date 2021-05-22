@@ -9,13 +9,16 @@
 
 <script>
   import Sidebar from "@/components/Sidebar/Sidebar";
-  import {mapActions} from "vuex";
+  import {mapActions, mapMutations} from "vuex";
   import TaskList from "./views/Content";
 
   export default {
     components: {
       TaskList,
       Sidebar
+    },
+    created() {
+      // this.setCurrentList(this.$route.params.id)
     },
 
     mounted() {
@@ -25,7 +28,8 @@
 
     methods: {
       ...mapActions(['fetchLists', 'fetchColors']),
-    }
+      ...mapMutations(['setCurrentList'])
+    },
   }
 </script>
 

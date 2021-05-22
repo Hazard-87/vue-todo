@@ -1,10 +1,9 @@
 <template>
   <div class="todo__sidebar">
     <ul class="list">
-      <List v-for="item in allTask" :item="item"/>
+      <List :item="allTask" @click-list="setList"/>
     </ul>
 
-    <!--    loader-->
     <div v-if="!getLists.length">
       <div class="loader" v-for="item in 5">
         <VueSkeletonLoader
@@ -25,6 +24,7 @@
     <ul v-else class="list">
       <List v-for="(item, i) in getLists"
             :item="item"
+            :currentId="i"
             @click-list="clickList(i)"
             :colors="getColors"
             isRemovable="isRemovable"/>
@@ -48,20 +48,24 @@
 
     data: () => ({
       itemAddList: [1],
-      allTask: [
+      allTask:
         {
+          id: 'tasks',
           name: 'Все задачи',
           icon: 'list.svg'
         }
-      ],
+      ,
       activeItemId: null,
-      isRemovable: true,
+      isRemovable: true
     }),
 
     methods: {
       ...mapMutations(['setCurrentList']),
       clickList(id) {
         this.setCurrentList(id)
+      },
+      setList() {
+        this.setCurrentList(null)
       }
     },
 

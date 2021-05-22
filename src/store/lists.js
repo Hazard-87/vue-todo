@@ -4,7 +4,7 @@ export default {
   state: {
     lists: [],
     currentListId: null,
-    currentList: 0,
+    currentList: 1,
     isLoading: false
   },
   mutations: {

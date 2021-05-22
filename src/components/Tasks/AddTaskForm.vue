@@ -1,7 +1,5 @@
 <template>
-  <div class="tasks__form">
-
-
+  <form class="tasks__form" @submit.prevent="addNewTask">
     <div class="tasks__form-block">
       <input
               v-model="newTask"
@@ -10,14 +8,14 @@
               type="text"
               :placeholder="[hasError ? 'Введите текст задачи' : 'Текст задачи']"
       />
-      <button :disabled="getIsLoading" class="button" @click="addNewTask">
+      <button :disabled="getIsLoading" class="button" type="submit">
         {{!getIsLoading ? buttonName : buttonLoading}}
       </button>
       <button class="button button--grey" @click="hideTaskForm">
         Отмена
       </button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>

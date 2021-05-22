@@ -1,5 +1,6 @@
 <template>
-  <li @click="clickList">
+  <li :class="[getCurrentList == currentId ? 'active' : '']">
+  <div @click="clickList(item.id)" class="list-inner" >
     <router-link tag="div" class="list-link" :class="[item && item.className]" :to="url">
       <i>
         <img v-if="item.icon" :src="getImgUrl(item.icon)"/>
@@ -9,30 +10,29 @@
         {{item.name}}
       </span>
     </router-link>
+
+  </div>
     <img
             @click="deleteList(item.id)"
             v-if="isRemovable"
             class="list__remove-icon"
             src='../../assets/img/remove.svg'/>
   </li>
-
 </template>
 
 <script>
   import Badge from '@/components/Badge/Badge'
-  import {mapActions} from 'vuex'
+  import {mapActions, mapGetters, mapMutations} from 'vuex'
 
   export default {
     name: "List",
 
     data: () => ({
       activeId: null,
-      url: '',
-      isActive: false,
-      listId: null
+      url: ''
     }),
 
-    props: ['isRemovable', 'item', 'colors'],
+    props: ['isRemovable', 'item', 'colors', 'currentId'],
 
     components: {
       Badge
@@ -40,6 +40,7 @@
 
     methods: {
       ...mapActions(['removeList']),
+      ...mapMutations(['setCurrentListId']),
       getImgUrl(pic) {
         return require('../../assets/img/' + pic)
       },
@@ -50,15 +51,23 @@
           this.url = '/'
         }
       },
-      clickList() {
+      clickList(id) {
         this.$emit('click-list')
-        this.isActive = !this.isActive
-        // this.listId = index
+        this.setCurrentListId(id)
       },
-      async deleteList(id) {
-        await this.removeList(id)
-        this.$router.push('/')
+
+      deleteList(id) {
+        this.removeList(id)
+        console.log(this.$route.params)
+        console.log(this.getCurrentListId)
+        if (+this.$route.params.id === id) {
+        this.$router.push('/tasks')
+        }
       }
+    },
+
+    computed: {
+      ...mapGetters(['getCurrentList', 'getCurrentListId'])
     },
 
     mounted() {
@@ -73,6 +82,9 @@ li {
   display: flex;
   justify-content: space-between;
   padding: 0;
+}
+.list-inner{
+  width: 100%;
 }
   .list-link{
     width: 100%;

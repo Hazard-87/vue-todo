@@ -20,16 +20,6 @@
       "name": "Спорт",
       "colorId": 8,
       "id": 8
-    },
-    {
-      "name": "dsd",
-      "colorId": 3,
-      "id": 9
-    },
-    {
-      "name": "asas",
-      "colorId": 3,
-      "id": 10
     }
   ],
   "tasks": [
@@ -54,7 +44,7 @@
     {
       "listId": 1,
       "text": "Реализовать класс активности активного списка",
-      "completed": false,
+      "completed": true,
       "id": 19
     },
     {
@@ -77,7 +67,7 @@
     },
     {
       "listId": 1,
-      "text": "Реализовать редактирование заголовка задач",
+      "text": "Реализовал редактирование заголовка задач",
       "completed": true,
       "id": 40
     },
@@ -107,14 +97,14 @@
     },
     {
       "listId": 1,
-      "text": "Реализовать обработку ошибок",
+      "text": "Реализовал обработку ошибок",
       "completed": true,
       "id": 47
     },
     {
       "listId": 1,
-      "text": "Реализовать валидацию на пустой текст",
-      "completed": false,
+      "text": "Реализовал валидацию на пустой текст",
+      "completed": true,
       "id": 48
     },
     {
@@ -126,20 +116,8 @@
     {
       "listId": 8,
       "text": "Начать бегать по утрам",
-      "completed": false,
+      "completed": true,
       "id": 79
-    },
-    {
-      "listId": 1,
-      "text": "ss",
-      "completed": false,
-      "id": 80
-    },
-    {
-      "listId": 1,
-      "text": "sss",
-      "completed": false,
-      "id": 81
     }
   ],
   "colors": [

@@ -11,7 +11,7 @@
       </li>
     </ul>
 
-    <div v-else class="add-list__popup">
+    <form v-else class="add-list__popup" @submit.prevent="addTaskList">
       <img
               src='../../assets/img/close.svg'
               alt="Close button"
@@ -38,10 +38,10 @@
                @selectColor="selectColor(color.id)"
         />
       </div>
-      <button :disabled="getIsLoading" class="button" @click="addTaskList">
+      <button :disabled="getIsLoading" type="submit" class="button">
         {{!getIsLoading ? buttonName : buttonLoading}}
       </button>
-    </div>
+    </form>
   </div>
 </template>
 
