@@ -5,6 +5,7 @@ export default {
     lists: [],
     currentListId: null,
     currentList: 0,
+    isLoading: false
   },
   mutations: {
     setLists(state, payload) {
@@ -47,65 +48,110 @@ export default {
     setCurrentList(state, payload) {
       state.currentList = payload
     },
+    setIsLoading(state, payload) {
+      state.isLoading = payload
+    }
+
   },
 
   getters: {
     getLists(state) {
       return state.lists
     },
-
     getCurrentListId(state) {
       return state.currentListId
     },
     getCurrentList(state) {
       return state.currentList
     },
+    getIsLoading(state) {
+      return state.isLoading
+    },
   },
 
   actions: {
-    async fetchLists(context) {
-      let res = await axios.get('http://localhost:3000/lists?_expand=color&_embed=tasks');
-      context.commit("setLists", res.data);
-    },
-
-    async addList(context, payload) {
-      let res = await axios.post('http://localhost:3000/lists', payload);
-      res.data = {...res.data, tasks: []}
-      context.commit("addLists", res.data);
-    },
-    async addTask(context, payload) {
-      const res = await axios.post('http://localhost:3000/tasks', payload);
-      context.commit("addTasks", res.data);
-    },
-    async removeList(context, id) {
-      const res = await axios.delete('http://localhost:3000/lists/' + id);
-      if (res.status === 200) {
-        const newLists = await context.state.lists.filter(list => list.id !== id);
-        await context.commit('setLists', newLists)
+    async fetchLists({commit}) {
+      commit('setIsLoading', true)
+      try {
+        let res = await axios.get('http://localhost:3000/lists?_expand=color&_embed=tasks');
+        commit("setLists", res.data);
+      } catch (e) {
+        alert("Произошла ошибка при получении списков задач")
+      } finally {
+        commit('setIsLoading', false)
       }
     },
-    async removeTask(context, {id, index}) {
-      const res = await axios.delete('http://localhost:3000/tasks/' + id)
-      const newTasks = await context.state.lists[context.state.currentList].tasks.filter(task => task.id !== id);
-      context.commit('setNewTasks', newTasks)
+
+    async addList({commit}, payload) {
+      commit('setIsLoading', true)
+      try {
+        let res = await axios.post('http://localhost:3000/lists', payload);
+        res.data = {...res.data, tasks: []}
+        commit("addLists", res.data);
+      } catch (e) {
+        alert('Не получилось добавить список задач')
+      } finally {
+        commit('setIsLoading', false)
+      }
+    },
+    async addTask({commit}, payload) {
+      commit('setIsLoading', true)
+      try {
+        const res = await axios.post('http://localhost:3000/tasks', payload);
+        commit("addTasks", res.data);
+      } catch (e) {
+        alert('Произошла ошибка при добавлении задачи')
+      } finally {
+        commit('setIsLoading', false)
+      }
+    },
+    async removeList(context, id) {
+      try {
+        const res = await axios.delete('http://localhost:3000/lists/' + id);
+        const newLists = await context.state.lists.filter(list => list.id !== id);
+        await context.commit('setLists', newLists)
+      } catch (e) {
+        alert('Произошла ошибка при удалении списка задач')
+      }
+    },
+    async removeTask(context, id) {
+      try {
+        const res = await axios.delete('http://localhost:3000/tasks/' + id)
+        const newTasks = await context.state.lists[context.state.currentList].tasks.filter(task => task.id !== id);
+        context.commit('setNewTasks', newTasks)
+      } catch (e) {
+        alert('Произошла ошибка при удалении задачи')
+      }
     },
     async changeIsCompleted(context, payload) {
-      const res = await axios.patch('http://localhost:3000/tasks/' + payload.id, {
-        completed: !payload.isCompleted
-      })
-      context.commit('editIsCompleted', res.data)
+      try {
+        const res = await axios.patch('http://localhost:3000/tasks/' + payload.id, {
+          completed: !payload.isCompleted
+        })
+        context.commit('editIsCompleted', res.data)
+      } catch (e) {
+        alert('Произошла ошибка при изменении готовности задачи')
+      }
     },
     async changeTitle(context, payload) {
-      const res = await axios.patch('http://localhost:3000/lists/' + payload.id, {
-        name: payload.name
-      })
-      context.commit('editTitle', res.data)
+      try {
+        const res = await axios.patch('http://localhost:3000/lists/' + payload.id, {
+          name: payload.name
+        })
+        context.commit('editTitle', res.data)
+      } catch (e) {
+        alert('Произошла ошибка при изменении заголовка списка задач')
+      }
     },
     async changeTaskText(context, payload) {
-      const res = await axios.patch('http://localhost:3000/tasks/' + payload.id, {
-        text: payload.text
-      })
-      context.commit('editText', res.data)
+      try {
+        const res = await axios.patch('http://localhost:3000/tasks/' + payload.id, {
+          text: payload.text
+        })
+        context.commit('editText', res.data)
+      } catch (e) {
+        alert('Произошла ошибка при обновлении текста задачи')
+      }
     },
   }
 }

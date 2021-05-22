@@ -9,8 +9,8 @@
               type="text"
               placeholder="Текст задачи"
       />
-      <button class="button" @click="addNewTask">
-        Добавить задачу
+      <button :disabled="getIsLoading" class="button" @click="addNewTask">
+        {{!getIsLoading ? buttonName : buttonLoading}}
       </button>
       <button class="button button--grey" @click="hideTaskForm">
         Отмена
@@ -28,7 +28,9 @@
     data() {
       return {
         newTask: '',
-        id: +this.$route.params['id']
+        id: +this.$route.params['id'],
+        buttonName: 'Добавить задачу',
+        buttonLoading: 'Добавление...',
       }
     },
 
@@ -44,13 +46,12 @@
           text: this.newTask,
           completed: false
         })
-        // this.fetchTasks(this.id)
         this.hideTaskForm()
       }
     },
 
     computed: {
-      ...mapGetters(['getCurrentListId'])
+      ...mapGetters(['getCurrentListId', 'getIsLoading'])
     },
 
   }

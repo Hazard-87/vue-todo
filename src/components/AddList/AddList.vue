@@ -37,8 +37,8 @@
                @selectColor="selectColor(color.id)"
         />
       </div>
-      <button class="button" @click="addTaskList">
-        Добавить
+      <button :disabled="getIsLoading" class="button" @click="addTaskList">
+        {{!getIsLoading ? buttonName : buttonLoading}}
       </button>
     </div>
   </div>
@@ -47,7 +47,7 @@
 <script>
   import List from "../List/List";
   import Badge from "../Badge/Badge";
-  import {mapActions} from 'vuex';
+  import {mapActions, mapGetters} from 'vuex';
 
   export default {
     name: "AddList",
@@ -63,10 +63,11 @@
       listValue: '',
       currentColor: 1,
       isActive: false,
+      buttonName: 'Добавить',
+      buttonLoading: 'Добавление...',
     }),
 
     methods: {
-      // ...mapActions(['addList', 'fetchLists']),
       ...mapActions(['addList']),
       openModal() {
         this.visibleModal = true
@@ -83,6 +84,10 @@
         this.listValue = ''
         this.visibleModal = false
       },
+    },
+
+    computed: {
+      ...mapGetters(['getIsLoading'])
     },
 
     components: {

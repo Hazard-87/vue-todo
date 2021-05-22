@@ -11,7 +11,6 @@
         <h2 v-if="!list.tasks.length" class="tasks__items-row">Задачи отсутствуют</h2>
         <TaskItem v-else :list="list" @changeCompleted="changeCompleted" :currentId="currentId"
                   @click-task="$emit('click-task')"/>
-
       </div>
     </template>
   </div>

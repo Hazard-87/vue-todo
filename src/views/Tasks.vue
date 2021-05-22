@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Task @changeCompleted="changeCompleted" :list="getLists[getCurrentList]" />
+    <Task @changeCompleted="changeCompleted" :list="getLists[getCurrentList]"/>
     <AddTaskButton v-if="!visibleTaskForm" @showTaskForm="showTaskForm"/>
     <AddTaskForm v-else @hideTaskForm="visibleTaskForm = false"/>
   </div>
@@ -23,7 +23,7 @@
     },
 
     methods: {
-      ...mapActions(['fetchLists', 'changeIsCompleted']),
+      ...mapActions(['changeIsCompleted']),
       showTaskForm() {
         this.visibleTaskForm = true
       },
@@ -41,7 +41,6 @@
     watch: {
       $route(toRoute) {
         this.id = toRoute.params['id']
-        // this.fetchTasks(this.id)
       }
     },
 

@@ -15,11 +15,6 @@
       "name": "Vue.js",
       "colorId": 2,
       "id": 7
-    },
-    {
-      "name": "еуые",
-      "colorId": 1,
-      "id": 8
     }
   ],
   "tasks": [
@@ -98,7 +93,7 @@
     {
       "listId": 1,
       "text": "Реализовать обработку ошибок",
-      "completed": false,
+      "completed": true,
       "id": 47
     },
     {
@@ -106,6 +101,24 @@
       "text": "Реализовать валидацию на пустой текст",
       "completed": false,
       "id": 48
+    },
+    {
+      "listId": 3,
+      "text": "wwe",
+      "completed": false,
+      "id": 76
+    },
+    {
+      "listId": 3,
+      "text": "23o33",
+      "completed": false,
+      "id": 77
+    },
+    {
+      "listId": 1,
+      "text": "Реализовать лоадер ",
+      "completed": true,
+      "id": 78
     }
   ],
   "colors": [

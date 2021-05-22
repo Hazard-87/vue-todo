@@ -43,7 +43,7 @@
             />
           </svg>
         </div>
-        <div @click="deleteTask(task.id, i)">
+        <div @click="deleteTask(task.id)">
           <svg
                   width="11"
                   height="11"
@@ -95,12 +95,13 @@
         this.changeTaskText(data)
         this.editMode = false
       },
-      deleteTask(id, index) {
-        const data = {
-          id,
-          index
-        }
-        this.removeTask(data)
+      deleteTask(id) {
+        // console.log(index)
+        // const data = {
+        //   id,
+        // index
+        // }
+        this.removeTask(id)
       }
     }
   }

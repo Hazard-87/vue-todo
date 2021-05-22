@@ -1,5 +1,5 @@
 <template>
-  <li @click="$emit('click-list')">
+  <li @click="clickList">
     <router-link tag="div" class="list-link" :class="[item && item.className]" :to="url">
       <i>
         <img v-if="item.icon" :src="getImgUrl(item.icon)"/>
@@ -28,16 +28,17 @@
     data: () => ({
       activeId: null,
       url: '',
+      isActive: false,
+      listId: null
     }),
 
-    props: ['isRemovable', 'item', 'colors', 'isActive'],
+    props: ['isRemovable', 'item', 'colors'],
 
     components: {
       Badge
     },
 
     methods: {
-      // ...mapActions(['removeList', 'fetchLists']),
       ...mapActions(['removeList']),
       getImgUrl(pic) {
         return require('../../assets/img/' + pic)
@@ -48,6 +49,11 @@
         } else {
           this.url = '/'
         }
+      },
+      clickList() {
+        this.$emit('click-list')
+        this.isActive = !this.isActive
+        // this.listId = index
       },
       async deleteList(id) {
         await this.removeList(id)
