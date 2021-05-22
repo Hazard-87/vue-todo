@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "server": "json-server --watch db.json"
+    "server": "node server.js",
+    "json-server": "npx json-server --watch delay 2000 public/db.json --port=3001"
   },
   "dependencies": {
     "axios": "^0.21.1",
