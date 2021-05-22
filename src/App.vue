@@ -17,11 +17,11 @@
       TaskList,
       Sidebar
     },
-    created() {
-      // this.setCurrentList(this.$route.params.id)
-    },
 
     mounted() {
+      if (this.$router.currentRoute.fullPath !== '/tasks') {
+        this.$router.push('/tasks')
+      }
       this.fetchLists()
       this.fetchColors()
     },

@@ -58,8 +58,6 @@
 
       deleteList(id) {
         this.removeList(id)
-        console.log(this.$route.params)
-        console.log(this.getCurrentListId)
         if (+this.$route.params.id === id) {
         this.$router.push('/tasks')
         }
@@ -72,7 +70,6 @@
 
     mounted() {
       this.setUrl()
-      // this.$router.push('/')
     },
   }
 </script>
