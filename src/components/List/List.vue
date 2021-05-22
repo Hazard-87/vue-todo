@@ -1,77 +1,82 @@
 <template>
   <li :class="[getCurrentList == currentId ? 'active' : '']">
-  <div @click="clickList(item.id)" class="list-inner" >
-    <router-link tag="div" class="list-link" :class="[item && item.className]" :to="url">
-      <i>
-        <img v-if="item.icon" :src="getImgUrl(item.icon)"/>
-        <Badge v-else :color="colors[item.colorId-1]" :colors="colors"/>
-      </i>
-      <span>
-        {{item.name}}
-      </span>
-    </router-link>
-
-  </div>
+    <div @click="clickList(item.id)" class="list-inner">
+      <router-link
+        tag="div"
+        class="list-link"
+        :class="[item && item.className]"
+        :to="url"
+      >
+        <i>
+          <img v-if="item.icon" :src="getImgUrl(item.icon)" />
+          <Badge v-else :color="colors[item.colorId - 1]" :colors="colors" />
+        </i>
+        <span>
+          {{ item.name }}
+        </span>
+      </router-link>
+    </div>
     <img
-            @click="deleteList(item.id)"
-            v-if="isRemovable"
-            class="list__remove-icon"
-            src='../../assets/img/remove.svg'/>
+      @click="deleteList(item.id)"
+      v-if="isRemovable"
+      class="list__remove-icon"
+      src="../../assets/img/remove.svg"
+    />
   </li>
 </template>
 
 <script>
-  import Badge from '@/components/Badge/Badge'
-  import {mapActions, mapGetters, mapMutations} from 'vuex'
+import Badge from "@/components/Badge/Badge";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 
-  export default {
-    name: "List",
+export default {
+  name: "List",
 
-    data: () => ({
-      activeId: null,
-      url: ''
-    }),
+  data: () => ({
+    activeId: null,
+    url: "",
+  }),
 
-    props: ['isRemovable', 'item', 'colors', 'currentId'],
+  props: ["isRemovable", "item", "colors", "currentId"],
 
-    components: {
-      Badge
+  components: {
+    Badge,
+  },
+
+  methods: {
+    ...mapActions(["removeList"]),
+    ...mapMutations(["setCurrentListId"]),
+    getImgUrl(pic) {
+      return require("../../assets/img/" + pic);
     },
-
-    methods: {
-      ...mapActions(['removeList']),
-      ...mapMutations(['setCurrentListId']),
-      getImgUrl(pic) {
-        return require('../../assets/img/' + pic)
-      },
-      setUrl() {
-        if (this.item.id) {
-          this.url = '/' + this.item.id
-        } else {
-          this.url = '/'
-        }
-      },
-      clickList(id) {
-        this.$emit('click-list')
-        this.setCurrentListId(id)
-      },
-
-      deleteList(id) {
-        this.removeList(id)
-        if (+this.$route.params.id === id) {
-        this.$router.push('/tasks')
-        }
+    setUrl() {
+      if (this.item.id) {
+        this.url = "/" + this.item.id;
+      } else {
+        this.url = "/";
       }
     },
-
-    computed: {
-      ...mapGetters(['getCurrentList', 'getCurrentListId'])
+    clickList(id) {
+      this.$emit("click-list");
+      this.setCurrentListId(id);
     },
 
-    mounted() {
-      this.setUrl()
+    deleteList(id) {
+      this.removeList(id);
+      if (+this.$route.params.id === id) {
+        this.$router.push("/");
+      }
     },
-  }
+  },
+
+  computed: {
+    ...mapGetters(["getCurrentList", "getCurrentListId"]),
+  },
+
+  mounted() {
+    this.setUrl();
+  },
+};
 </script>
 
 <style scoped>
@@ -80,13 +85,13 @@ li {
   justify-content: space-between;
   padding: 0;
 }
-.list-inner{
+.list-inner {
   width: 100%;
 }
-  .list-link{
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 12px;
-  }
+.list-link {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+}
 </style>
