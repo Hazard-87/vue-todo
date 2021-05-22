@@ -16,14 +16,15 @@
               src='../../assets/img/close.svg'
               alt="Close button"
               class="add-list__popup-close-btn"
-              @click="visibleModal = false"
+              @click="hideModal"
       />
 
       <input
-              v-model="listValue"
+              v-model="listTitle"
+              :class="[hasError ? 'error' : '']"
               class="field"
               type="text"
-              placeholder="Название списка"
+              :placeholder="[hasError ? 'Введите текст' : 'Название списка']"
       />
 
       <div class="add-list__popup-colors">
@@ -60,11 +61,12 @@
             name: 'Добавить список'
           },
       visibleModal: false,
-      listValue: '',
+      listTitle: '',
       currentColor: 1,
       isActive: false,
       buttonName: 'Добавить',
       buttonLoading: 'Добавление...',
+      hasError: false
     }),
 
     methods: {
@@ -72,17 +74,26 @@
       openModal() {
         this.visibleModal = true
       },
+      hideModal() {
+        this.visibleModal = false
+        this.hasError = false
+      },
       selectColor(id) {
         this.currentColor = id
       },
 
       async addTaskList() {
-        await this.addList({
-          name: this.listValue,
-          colorId: this.currentColor
-        })
-        this.listValue = ''
-        this.visibleModal = false
+        if (this.listTitle) {
+          await this.addList({
+            name: this.listTitle,
+            colorId: this.currentColor
+          })
+          this.listTitle = ''
+          this.visibleModal = false
+          this.hasError = false
+        } else {
+          this.hasError = true
+        }
       },
     },
 
@@ -98,7 +109,14 @@
 
 <style lang="scss">
   @import '../AddList/AddList.scss';
+
   li {
     padding: 10px 12px;
+  }
+
+  .error {
+    &::placeholder {
+      color: red;
+    }
   }
 </style>

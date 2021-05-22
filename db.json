@@ -15,6 +15,21 @@
       "name": "Vue.js",
       "colorId": 2,
       "id": 7
+    },
+    {
+      "name": "Спорт",
+      "colorId": 8,
+      "id": 8
+    },
+    {
+      "name": "dsd",
+      "colorId": 3,
+      "id": 9
+    },
+    {
+      "name": "asas",
+      "colorId": 3,
+      "id": 10
     }
   ],
   "tasks": [
@@ -69,13 +84,13 @@
     {
       "listId": 7,
       "text": "Прочитать документацию!!",
-      "completed": true,
+      "completed": false,
       "id": 42
     },
     {
       "listId": 7,
       "text": "Изучить Nuxt.js",
-      "completed": true,
+      "completed": false,
       "id": 43
     },
     {
@@ -103,22 +118,28 @@
       "id": 48
     },
     {
-      "listId": 3,
-      "text": "wwe",
-      "completed": false,
-      "id": 76
+      "listId": 1,
+      "text": "Реализовал лоадер ",
+      "completed": true,
+      "id": 78
     },
     {
-      "listId": 3,
-      "text": "23o33",
+      "listId": 8,
+      "text": "Начать бегать по утрам",
       "completed": false,
-      "id": 77
+      "id": 79
     },
     {
       "listId": 1,
-      "text": "Реализовать лоадер ",
-      "completed": true,
-      "id": 78
+      "text": "ss",
+      "completed": false,
+      "id": 80
+    },
+    {
+      "listId": 1,
+      "text": "sss",
+      "completed": false,
+      "id": 81
     }
   ],
   "colors": [

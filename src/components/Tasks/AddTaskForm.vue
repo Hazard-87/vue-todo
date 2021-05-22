@@ -6,8 +6,9 @@
       <input
               v-model="newTask"
               class="field"
+              :class="[hasError ? 'error' : '']"
               type="text"
-              placeholder="Текст задачи"
+              :placeholder="[hasError ? 'Введите текст задачи' : 'Текст задачи']"
       />
       <button :disabled="getIsLoading" class="button" @click="addNewTask">
         {{!getIsLoading ? buttonName : buttonLoading}}
@@ -31,6 +32,7 @@
         id: +this.$route.params['id'],
         buttonName: 'Добавить задачу',
         buttonLoading: 'Добавление...',
+        hasError: false
       }
     },
 
@@ -39,14 +41,20 @@
       ...mapMutations(['setCurrentListId']),
       hideTaskForm() {
         this.$emit('hideTaskForm')
+        this.hasError = false
       },
       async addNewTask() {
-        await this.addTask({
-          listId: this.id,
-          text: this.newTask,
-          completed: false
-        })
-        this.hideTaskForm()
+        if (this.newTask) {
+          await this.addTask({
+            listId: this.id,
+            text: this.newTask,
+            completed: false
+          })
+          this.hideTaskForm()
+          this.hasError = false
+        } else {
+          this.hasError = true
+        }
       }
     },
 
@@ -59,5 +67,9 @@
 
 
 <style scoped>
-
+.error {
+  &::placeholder {
+    color: red;
+  }
+}
 </style>
