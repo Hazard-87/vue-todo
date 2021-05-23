@@ -20,6 +20,11 @@
       "name": "Спорт",
       "colorId": 8,
       "id": 8
+    },
+    {
+      "name": "тест1",
+      "colorId": 1,
+      "id": 9
     }
   ],
   "tasks": [
@@ -56,13 +61,13 @@
     {
       "listId": 3,
       "text": "Посмотреть Форсаж 9",
-      "completed": true,
+      "completed": false,
       "id": 25
     },
     {
       "listId": 3,
       "text": "Досмотреть сериал \"Настоящий детектив\"",
-      "completed": true,
+      "completed": false,
       "id": 38
     },
     {
@@ -86,7 +91,7 @@
     {
       "listId": 7,
       "text": "Научиться применять TypeScript во Vue.js",
-      "completed": true,
+      "completed": false,
       "id": 44
     },
     {
@@ -118,6 +123,12 @@
       "text": "Начать бегать по утрам",
       "completed": true,
       "id": 79
+    },
+    {
+      "listId": 9,
+      "text": "тестовая задача 1",
+      "completed": true,
+      "id": 80
     }
   ],
   "colors": [
