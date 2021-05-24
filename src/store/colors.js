@@ -20,7 +20,7 @@ export default {
 
   actions: {
     async fetchColors(context) {
-      let res = await axios.get('http://localhost:3000/colors');
+      let res = await axios.get('/colors');
       context.commit("setColors", res.data);
     },
   }

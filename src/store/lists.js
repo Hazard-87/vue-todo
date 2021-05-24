@@ -73,7 +73,7 @@ export default {
     async fetchLists({commit}) {
       commit('setIsLoading', true)
       try {
-        let res = await axios.get('http://localhost:3000/lists?_expand=color&_embed=tasks');
+        let res = await axios.get('/lists?_expand=color&_embed=tasks');
         commit("setLists", res.data);
       } catch (e) {
         alert("Произошла ошибка при получении списков задач")
@@ -85,7 +85,7 @@ export default {
     async addList({commit}, payload) {
       commit('setIsLoading', true)
       try {
-        let res = await axios.post('http://localhost:3000/lists', payload);
+        let res = await axios.post('/lists', payload);
         res.data = {...res.data, tasks: []}
         commit("addLists", res.data);
       } catch (e) {
@@ -97,7 +97,7 @@ export default {
     async addTask({commit}, payload) {
       commit('setIsLoading', true)
       try {
-        const res = await axios.post('http://localhost:3000/tasks', payload);
+        const res = await axios.post('/tasks', payload);
         commit("addTasks", res.data);
       } catch (e) {
         alert('Произошла ошибка при добавлении задачи')
@@ -107,7 +107,7 @@ export default {
     },
     async removeList(context, id) {
       try {
-        const res = await axios.delete('http://localhost:3000/lists/' + id);
+        const res = await axios.delete('/lists/' + id);
         const newLists = await context.state.lists.filter(list => list.id !== id);
         await context.commit('setLists', newLists)
       } catch (e) {
@@ -116,7 +116,7 @@ export default {
     },
     async removeTask(context, id) {
       try {
-        const res = await axios.delete('http://localhost:3000/tasks/' + id)
+        const res = await axios.delete('/tasks/' + id)
         const newTasks = await context.state.lists[context.state.currentList].tasks.filter(task => task.id !== id);
         context.commit('setNewTasks', newTasks)
       } catch (e) {
@@ -125,7 +125,7 @@ export default {
     },
     async changeIsCompleted(context, payload) {
       try {
-        const res = await axios.patch('http://localhost:3000/tasks/' + payload.id, {
+        const res = await axios.patch('/tasks/' + payload.id, {
           completed: !payload.isCompleted
         })
         context.commit('editIsCompleted', res.data)
@@ -135,7 +135,7 @@ export default {
     },
     async changeTitle(context, payload) {
       try {
-        const res = await axios.patch('http://localhost:3000/lists/' + payload.id, {
+        const res = await axios.patch('/lists/' + payload.id, {
           name: payload.name
         })
         context.commit('editTitle', res.data)
@@ -145,7 +145,7 @@ export default {
     },
     async changeTaskText(context, payload) {
       try {
-        const res = await axios.patch('http://localhost:3000/tasks/' + payload.id, {
+        const res = await axios.patch('/tasks/' + payload.id, {
           text: payload.text
         })
         context.commit('editText', res.data)
