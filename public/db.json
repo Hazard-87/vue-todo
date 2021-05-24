@@ -128,6 +128,12 @@
       "text": "Начать бегать по утрам",
       "completed": true,
       "id": 79
+    },
+    {
+      "listId": 10,
+      "text": "ddkasdsa",
+      "completed": false,
+      "id": 80
     }
   ],
   "colors": [

@@ -10,6 +10,7 @@
 <script>
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { mapActions, mapMutations } from "vuex";
+
 import TaskList from "./views/Content";
 
 export default {
