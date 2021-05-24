@@ -2,7 +2,7 @@
   <div id="app">
     <div class="todo">
       <Sidebar />
-      <TaskList />
+      <Content />
     </div>
   </div>
 </template>
@@ -10,12 +10,11 @@
 <script>
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { mapActions, mapMutations } from "vuex";
-
-import TaskList from "./views/Content";
+import Content from "./views/Content";
 
 export default {
   components: {
-    TaskList,
+    Content,
     Sidebar,
   },
 
