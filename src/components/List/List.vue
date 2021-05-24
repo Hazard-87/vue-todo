@@ -45,15 +45,15 @@ export default {
 
   methods: {
     ...mapActions(["removeList"]),
-    ...mapMutations(["setCurrentListId"]),
+    ...mapMutations(["setCurrentListId", "setCurrentList"]),
     getImgUrl(pic) {
       return require("../../assets/img/" + pic);
     },
     setUrl() {
       if (this.item.id) {
-        this.url = "/" + this.item.id;
+        this.url = "/task/" + this.item.id;
       } else {
-        this.url = "/";
+        this.url = "/tasks";
       }
     },
     clickList(id) {
@@ -64,7 +64,8 @@ export default {
     deleteList(id) {
       this.removeList(id);
       if (+this.$route.params.id === id) {
-        this.$router.push("/");
+        this.$router.push("/tasks");
+        this.setCurrentList(null);
       }
     },
   },

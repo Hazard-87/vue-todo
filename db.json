@@ -20,16 +20,6 @@
       "name": "Спорт",
       "colorId": 8,
       "id": 8
-    },
-    {
-      "name": "add",
-      "colorId": 1,
-      "id": 9
-    },
-    {
-      "name": "sas",
-      "colorId": 1,
-      "id": 10
     }
   ],
   "tasks": [

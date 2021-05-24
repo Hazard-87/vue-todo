@@ -19,8 +19,8 @@ export default {
   },
 
   mounted() {
-    if (this.$router.currentRoute.fullPath !== "/") {
-      this.$router.push("/");
+    if (this.$router.currentRoute.fullPath !== "/tasks") {
+      this.$router.push("/tasks");
     }
     this.fetchLists();
     this.fetchColors();
