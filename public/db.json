@@ -22,7 +22,7 @@
       "id": 8
     },
     {
-      "name": "тест1",
+      "name": "add",
       "colorId": 1,
       "id": 9
     }
@@ -123,12 +123,6 @@
       "text": "Начать бегать по утрам",
       "completed": true,
       "id": 79
-    },
-    {
-      "listId": 9,
-      "text": "тестовая задача 1",
-      "completed": true,
-      "id": 80
     }
   ],
   "colors": [

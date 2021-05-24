@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+
   state: {
     colors: [],
     currentColor: 1,

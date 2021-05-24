@@ -73,6 +73,7 @@ export default {
     async fetchLists({commit}) {
       commit('setIsLoading', true)
       try {
+        // let res = await axios.get('http://localhost:3000/lists?_expand=color&_embed=tasks');
         let res = await axios.get('/lists?_expand=color&_embed=tasks');
         commit("setLists", res.data);
       } catch (e) {
