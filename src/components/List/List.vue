@@ -89,6 +89,8 @@ li {
   width: 100%;
 }
 .list-link {
+  display: flex;
+  align-items: center;
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
