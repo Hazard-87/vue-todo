@@ -57,8 +57,8 @@
 
   .loader {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: start;
     margin-bottom: 10px;
 
     &:first-child {
